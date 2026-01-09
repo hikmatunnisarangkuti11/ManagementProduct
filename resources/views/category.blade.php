@@ -21,7 +21,6 @@
     <tbody id="categoryTable"></tbody>
 </table>
 
-<!-- ADD MODAL -->
 <div class="modal fade" id="addModal">
 <div class="modal-dialog">
 <div class="modal-content">
@@ -38,7 +37,6 @@
 </div>
 </div>
 
-<!-- EDIT MODAL -->
 <div class="modal fade" id="editModal">
 <div class="modal-dialog">
 <div class="modal-content">
@@ -56,14 +54,12 @@
 </div>
 </div>
 
-<!-- SWEETALERT -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <script>
 const API = "/api/categories";
 let categories = [];
 
-/* LOAD */
 function loadCategories() {
     fetch(API)
         .then(res => res.json())
@@ -73,7 +69,6 @@ function loadCategories() {
         });
 }
 
-/* RENDER */
 function renderTable(data) {
     let html = "";
     data.forEach(c => {
@@ -97,7 +92,6 @@ function renderTable(data) {
     categoryTable.innerHTML = html;
 }
 
-/* ADD */
 function showAddModal() {
     add_name.value = '';
     new bootstrap.Modal(addModal).show();
@@ -128,7 +122,6 @@ function addCategory() {
     });
 }
 
-/* EDIT */
 function showEdit(btn) {
     edit_id.value = btn.dataset.id;
     edit_name.value = btn.dataset.name;
@@ -160,7 +153,6 @@ function updateCategory() {
     });
 }
 
-/* DELETE */
 function deleteCategory(id) {
     Swal.fire({
         title: 'Yakin?',
@@ -185,7 +177,6 @@ function deleteCategory(id) {
     });
 }
 
-/* SEARCH */
 search.addEventListener('keyup', function () {
     const keyword = this.value.toLowerCase();
     renderTable(
