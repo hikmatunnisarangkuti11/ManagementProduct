@@ -63,8 +63,6 @@
 </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 <script>
 const API_PROD = "/api/products"
 const API_CAT = "/api/categories"
