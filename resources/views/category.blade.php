@@ -169,10 +169,15 @@ function deleteCategory(id) {
                 "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content
             }
         })
-        .then(res => res.json())
-        .then(res => {
-            Swal.fire('Berhasil', res.message, 'success');
+        .then(async res => {
+            const data = await res.json();
+            if (!res.ok) throw data;
+
+            Swal.fire('Berhasil', data.message, 'success');
             loadCategories();
+        })
+        .catch(err => {
+            Swal.fire('Gagal', err.message, 'error');
         });
     });
 }

@@ -52,7 +52,15 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
-        Category::findOrFail($id)->delete();
+        $category = Category::findOrFail($id);
+
+        if ($category->products()->count() > 0) {
+            return response()->json([
+                'message' => 'Kategori masih digunakan oleh produk'
+            ], 422);
+        }
+
+        $category->delete();
 
         return response()->json([
             'message' => 'Kategori berhasil dihapus'
